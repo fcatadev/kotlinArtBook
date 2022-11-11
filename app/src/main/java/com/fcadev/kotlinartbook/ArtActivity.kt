@@ -33,7 +33,36 @@ class ArtActivity : AppCompatActivity() {
 
     }
 
-    fun saveButtonClicked(view: View){}
+    fun saveButtonClicked(view: View){
+        val artName = binding.artNameText.text.toString()
+        val artistName = binding.artistNameText.text.toString()
+        val year = binding.yearText.text.toString()
+
+        if (selectedBitmap != null){
+            val smallBitmap = makeSmallerBitmap(selectedBitmap!!, 300)
+        }
+    }
+
+    //Bitmap küçültme fonksiyonu her proje de kullanılabilir.
+    private fun makeSmallerBitmap (image: Bitmap, maximumSize: Int) : Bitmap{
+        var width = image.width
+        var height = image.height
+
+        val bipmapRatio : Double = width.toDouble() / height.toDouble()
+        if (bipmapRatio > 1){
+            //Görsel yataydır
+            width = maximumSize
+            val scaleHeight = width / bipmapRatio
+            height = scaleHeight.toInt()
+        }else{
+            //Görsel dikeydir
+            height = maximumSize
+            val scaleWidth = height * bipmapRatio
+            width = scaleWidth.toInt()
+        }
+
+        return Bitmap.createScaledBitmap(image, width, height, true)
+    }
 
     fun selectImage(view: View){
 
