@@ -62,6 +62,7 @@ class MainActivity : AppCompatActivity() {
 
         if(item.itemId == R.id.menuId){
             val intent = Intent(this@MainActivity, ArtActivity::class.java)
+            intent.putExtra("info", "new")
             startActivity(intent)
         }
 
